@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-lg-5">
+    <div class="row justify-content-center shadow-lg rounded-5 overflow-hidden bg-white mx-2 border border-5 border-white">
+        <div class="col-lg-6 d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5 text-center" 
+             style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); position: relative;">
+            
+            <img src="" 
+                 alt="Astronaut Studying" class="img-fluid mb-4 floating-animation" style="max-height: 300px;">
+            
+            <h1 class="display-4 fw-bold">Ready for Lift-off? 🚀</h1>
+            <p class="lead fw-bold">Turn your homework into a high-score mission!</p>
+            
+            <div class="mt-4 bg-white bg-opacity-25 p-3 rounded-pill shadow-sm">
+                <span class="fw-bold">⭐ Daily Mission: Complete 30m of Study!</span>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 p-5">
+            <div class="mb-4 text-center">
+                <div class="bg-primary bg-opacity-10 d-inline-block p-4 rounded-circle mb-3">
+                    <i class="fas fa-user-astronaut fa-3x text-primary"></i>
+                </div>
+                <h2 class="fw-bold" style="color: #2d3436; letter-spacing: -1px;">Mission Control</h2>
+                <p class="text-muted">Enter your secret codes to start the journey!</p>
+            </div>
+
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label fw-bold small text-uppercase text-primary">Pilot Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text border-0 bg-light rounded-start-pill px-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" name="email" class="form-control bg-light border-0 py-3 rounded-end-pill" placeholder="hero@school.com" required>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-bold small text-uppercase text-primary">Secret Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text border-0 bg-light rounded-start-pill px-3">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" name="password" class="form-control bg-light border-0 py-3 rounded-end-pill" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-lg adventure-btn">
+                    START ADVENTURE <i class="fas fa-rocket ms-2"></i>
+                </button>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted">Not a member of the squad? 
+                        <a href="{{ url_for('main.signup') }}" class="text-primary fw-bold text-decoration-none">Join the Club!</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .rounded-5 { border-radius: 2.5rem !important; }
+    .floating-animation {
+        animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    .adventure-btn {
+        transition: all 0.3s ease;
+        background-color: #4361ee;
+        border: none;
+    }
+    .adventure-btn:hover {
+        transform: scale(1.05) rotate(-1deg);
+        background-color: #6c5ce7;
+    }
+</style>
+{% endblock %}

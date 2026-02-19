@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="container pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 text-white">
+        <h1 class="fw-bold">My Workspace</h1>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('main.alarms_page') }}" class="btn btn-warning rounded-pill px-3">Alarms</a>
+            <a href="{{ url_for('main.calendar_page') }}" class="btn btn-info text-white rounded-pill px-3">Calendar</a>
+        </div>
+    </div>
+
+    <div class="card border-0 p-4 mb-4 shadow rounded-4">
+        <h5 class="fw-bold mb-3 text-primary">Add New Challenge</h5>
+        <form method="POST" class="row g-3">
+            <div class="col-md-4"><input type="text" name="subject" class="form-control" placeholder="Subject" required></div>
+            <div class="col-md-3"><input type="date" name="date" class="form-control" required></div>
+            <div class="col-md-3"><input type="text" name="notes" class="form-control" placeholder="Notes"></div>
+            <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">Add Exam</button></div>
+        </form>
+    </div>
+
+    <div class="card border-0 shadow rounded-4 overflow-hidden">
+        <table class="table align-middle mb-0">
+            <thead class="bg-light">
+                <tr>
+                    <th class="ps-4">Subject</th>
+                    <th>Focus Time</th>
+                    <th>Status</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in exams %}
+                <tr>
+                    <td class="ps-4">
+                        <div class="fw-bold">{{ item.data.subject }}</div>
+                        <small class="text-muted">{{ item.data.date }}</small>
+                    </td>
+                    <td><span class="badge bg-light text-primary rounded-pill px-3">0m</span></td>
+                    <td>
+                        <span class="badge {% if item.days_left == 'N/A' or item.days_left < 0 %}bg-secondary{% else %}bg-primary{% endif %} rounded-pill px-3">
+                            {{ item.days_left }}d left
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ url_for('main.delete_exam', id=item.data.id) }}" 
+                           class="btn btn-link text-danger p-0" 
+                           onclick="return confirm('Delete mission?')">
+                            <i class="fas fa-trash-alt fa-lg"></i> </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

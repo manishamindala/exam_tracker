@@ -1,0 +1,10 @@
+body {
+    background: #0b0d17 !important; /* Force a dark space theme */
+    background-image: none !important; /* Remove the blocking image */
+    color: white;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9) !important; /* Make cards readable */
+    color: #333;
+}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+<style>
+    #calendar-box { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .fc { font-family: 'Inter', sans-serif; height: 650px; color: #333; }
+    .fc-toolbar-title { color: #333 !important; font-weight: bold; }
+    .fc-daygrid-day-number { color: #333; text-decoration: none; }
+</style>
+
+<div class="container pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-white">Mission Schedule</h1>
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-outline-light rounded-pill px-4">Back to Base</a>
+    </div>
+    <div id="calendar-box">
+        <div id="calendar"></div>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: [
+        {% for exam in exams %}
+        { title: '{{ exam.subject }}', start: '{{ exam.date }}', backgroundColor: '#00d2ff' },
+        {% endfor %}
+      ]
+    });
+    calendar.render();
+  });
+</script>
+{% endblock %}
