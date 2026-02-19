@@ -6,6 +6,9 @@ from models import User, Exam, Alarm
 from datetime import datetime
 
 main = Blueprint('main', __name__)
+@main.route('/')
+def index():
+    return redirect(url_for('main.login'))
 
 # --- AUTHENTICATION ---
 @main.route('/login', methods=['GET', 'POST'])
